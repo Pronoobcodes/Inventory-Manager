@@ -1,0 +1,38 @@
+{% extends "invApp/base.html" %}
+
+{% block title %}Product List{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Products</h1>
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>S/N</th>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Supplier</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.sku }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.supplier }}</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" href="{% url 'product-update' product.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'product-delete' product.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
